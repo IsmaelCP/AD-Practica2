@@ -11,19 +11,19 @@ public class ClientePersistencia {
 	static final String CONNECTOR = "com.mysql.jdbc.Driver";
 	static final String URL = "jdbc:mysql://localhost:3306/hotel?autoReconnect=true&useSSL=false";
 	static final String LOGIN = "root";
-	static final String PASS = "";
+	static final String PASS = "Studium2018;";
 
 	public static void createTableCliente() {
 		/* En MySQL Workbench hemos creado la tabla "hotel". Desde eclipse vamos a crear la tabla Cliente, aunque también lo podríamos crear desde MySQL Workbench. */
 
 		String sentenciaCrearBD = "CREATE TABLE IF NOT EXISTS hotel.clientes (idCliente INT NOT NULL AUTO_INCREMENT, nombre VARCHAR(20) NOT NULL, apellidos VARCHAR(40) NOT NULL, email VARCHAR(40) NOT NULL, dni VARCHAR(9) NOT NULL, clave VARCHAR(20) NOT NULL, PRIMARY KEY (idCliente));";
+		
 		try {
 			Class.forName(CONNECTOR);
 			Connection connect = DriverManager.getConnection(URL, LOGIN, PASS);
 			connect.createStatement().executeUpdate(sentenciaCrearBD);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -114,4 +114,5 @@ public class ClientePersistencia {
 
 		return correcto;
 	}
+	
 }
