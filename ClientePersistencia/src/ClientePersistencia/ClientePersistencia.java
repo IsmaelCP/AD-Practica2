@@ -34,7 +34,7 @@ public class ClientePersistencia {
 
 		String sentenciaCrearCliente = "INSERT INTO clientes (nombre, apellidos, email, dni, clave) VALUES('" + nombre + "', '" + apellidos + "', '" + email + "', '" + dni + "', '" + clave + "');";
 		String sentenciaRecuperarId = "SELECT LAST_INSERT_ID();";
-		Integer idCliente = -1;
+		Integer idCliente = 0;
 
 		try {
 			Class.forName(CONNECTOR);
@@ -76,7 +76,7 @@ public class ClientePersistencia {
 	}
 
 	public static boolean updateCliente (int idCliente, String campo, String nuevoValor) {
-		/* Actualiza el valor de la columna "campo" del cliente identificado por "idCliente". Devuelve true si se ha logrado actulizar. */
+		/* Actualiza el valor de la columna "campo" del cliente identificado por "idCliente". Devuelve true si se ha logrado actualizar. */
 
 		String sentenciaModificarCampo = "UPDATE clientes SET " + campo +"='"+nuevoValor+"' WHERE idCliente = '" + idCliente + "';";
 		Boolean correcto = false;
