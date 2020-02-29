@@ -91,5 +91,14 @@ public class Clientes implements java.io.Serializable {
 	public Clientes(Integer idCliente) {
 		this.idCliente = idCliente;
 	}
+	
+	public Clientes(Integer id, String nombre, String apellidos, String email, String dni, String clave) {
+		this.idCliente = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.dni = dni;
+		this.clave = clave;
+	}
 
 }

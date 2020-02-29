@@ -1,5 +1,6 @@
 package pojo;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -10,21 +11,25 @@ import org.hibernate.cfg.Configuration;
 public class HotelManager {
 
 	public static void main(String[] args) {
-
+		/*
 		// Crear un nuevo registro
 		Clientes cliente = new Clientes("Ismael", "Carracedo", "exfacia@gmail.com", "11111111B", "SE-567");
 		createCliente(cliente);
-
+		 */
+		/*
 		// Leer un registro
 		readCliente();
-
+		*/
+		/*
 		// Actualizar un registro
-		Clientes actualizarCliente = new Clientes("Ramón", "García", "rgarcia@gmail.com", "22222222B", "SE-444");
+		Clientes actualizarCliente = new Clientes(1, "Ramón", "García", "rgarcia@gmail.com", "22222222B", "SE-444");
 		updateCliente(actualizarCliente);
-
+		 */
+		
 		// Eliminar un registro
-		Clientes cliente10 = new Clientes(10);
+		Clientes cliente10 = new Clientes(4);
 		deleteCliente(cliente10);
+		
 	}
 
 	private static SessionFactory getSessionFactory() {
@@ -43,8 +48,13 @@ public class HotelManager {
 
 	public static List readCliente() {
 		Session sessionObj = getSessionFactory().openSession();
-		String c = "FROM clientes";
+		String c = "FROM Clientes";
 		List resultado = sessionObj.createQuery(c).list();
+		Iterator clienteIterador = resultado.iterator();
+		while(clienteIterador.hasNext()) {
+			Clientes c2 = (Clientes) clienteIterador.next();
+			System.out.println(" - " + c2.getNombre() + " - " + c2.getApellidos() + " - " + c2.getEmail() + " - " + c2.getDni() + " - " + c2.getClave());
+		}
 		sessionObj.close();
 		return resultado;
 	}
@@ -59,6 +69,7 @@ public class HotelManager {
 		clienteBD.setEmail(cliente.getEmail());
 		clienteBD.setDni(cliente.getDni());
 		clienteBD.setClave(cliente.getClave());
+		
 		transObj.commit();
 		sessionObj.close();
 		System.out.println("Registro actualizado correctamente");
